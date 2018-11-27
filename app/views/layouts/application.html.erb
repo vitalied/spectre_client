@@ -14,6 +14,13 @@
   </head>
 
   <body>
+    <% if user_signed_in? %>
+      <nav class="navbar navbar-light bg-light justify-content-end mb-5">
+        <%= current_user.first_name %> <%= current_user.last_name %> (<%= current_user.email %>)
+        <%= link_to 'Log out', destroy_user_session_path, method: :delete, class: 'btn btn-light ml-2' %>
+      </nav>
+    <% end %>
+
     <div class="container">
       <% if notice.present? %>
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -35,7 +42,9 @@
         </div>
       <% end %>
 
-      <%= yield %>
+      <div class="<%= 'devise-content text-center' unless user_signed_in? %>">
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>

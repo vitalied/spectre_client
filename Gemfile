@@ -31,7 +31,10 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'rest-client'
 
+gem 'devise'
+
 gem 'bootstrap'
+gem 'devise-bootstrap-views'
 gem 'jquery-rails'
 
 group :development, :test do
