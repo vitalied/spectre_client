@@ -14,4 +14,5 @@ Rails.application.routes.draw do
     end
   end
   resources :accounts,     only: :index
+  resources :transactions, only: :index
 end

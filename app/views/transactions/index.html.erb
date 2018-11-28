@@ -1,0 +1,27 @@
+<h2 class="mb-5">Account #<%= params[:account_id] %> Transactions</h2>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Made on</th>
+    <th scope="col">Category</th>
+    <th scope="col">Description</th>
+    <th scope="col">Amount</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @transactions.each do |transaction| %>
+    <tr>
+      <td><%= transaction['id'] %></td>
+      <td><%= transaction['made_on'] %></td>
+      <td><%= transaction['category'].capitalize %></td>
+      <td><%= transaction['description'] %></td>
+      <td><%= transaction['amount'] %> <%= transaction['currency_code'] %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back', accounts_path(login_id: params[:login_id]), class: 'btn btn-light mt-2 float-right' %>
