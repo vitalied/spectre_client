@@ -1,0 +1,41 @@
+<h2 class="mb-5">Connections</h2>
+
+<%= link_to 'New Connection', new_connection_path, class: 'btn btn-success mb-3 float-right' %>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Customer identifier</th>
+    <th scope="col">Status</th>
+    <th scope="col">Provider</th>
+    <th scope="col">Accounts</th>
+    <th scope="col">Actions</th>
+  </tr>
+  </thead>
+
+  <tbody>
+    <% @connections.each do |connection| %>
+      <tr>
+        <td><%= connection['id'] %></td>
+        <td><%= current_user.identifier %></td>
+        <td><%= connection['status'].capitalize %></td>
+        <td><%= connection['provider_name'] %></td>
+        <td>
+          <%= link_to_if @connections_accounts[connection['id']].to_i > 0, @connections_accounts[connection['id']], accounts_path(login_id: connection['id']) do %>
+            0
+          <% end %>
+        </td>
+        <td>
+          <% if can_refresh_connection?(connection) %>
+            <%= link_to 'Refresh', refresh_connection_path(connection['id']) %>
+            |
+          <% end %>
+          <%= link_to 'Reconnect', reconnect_connection_path(connection['id']) %>
+          |
+          <%= link_to 'Destroy', connection_path(connection['id']), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

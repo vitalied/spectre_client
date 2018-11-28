@@ -4,4 +4,13 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
+
+  root to: 'connections#index'
+
+  resources :connections, only: [:index, :new, :destroy] do
+    member do
+      get :refresh
+      get :reconnect
+    end
+  end
 end
