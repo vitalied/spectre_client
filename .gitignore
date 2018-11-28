@@ -26,5 +26,8 @@
 # Ignore .env
 .env*
 
+# Ignore VCR cassettes
+/spec/cassettes/*
+
 # Ignore JetBrains files
 .idea/
