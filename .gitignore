@@ -23,5 +23,8 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+# Ignore .env
+.env*
+
 # Ignore JetBrains files
 .idea/
