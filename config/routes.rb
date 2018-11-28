@@ -13,4 +13,5 @@ Rails.application.routes.draw do
       get :reconnect
     end
   end
+  resources :accounts,     only: :index
 end

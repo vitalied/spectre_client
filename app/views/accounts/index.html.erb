@@ -1,0 +1,33 @@
+<h2 class="mb-5">Login #<%= params[:login_id] %> Accounts</h2>
+
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">Id</th>
+    <th scope="col">Name</th>
+    <th scope="col">Balance</th>
+    <th scope="col">Currency</th>
+    <th scope="col">Nature</th>
+    <th scope="col">Transactions</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @accounts.each do |account| %>
+    <tr>
+      <td><%= account['id'] %></td>
+      <td><%= account['name'] %></td>
+      <td><%= account['balance'] %></td>
+      <td><%= account['currency_code'] %></td>
+      <td><%= account['nature'].capitalize %></td>
+      <td>
+        <%= link_to_if @accounts_transactions[account['id']].to_i > 0, @accounts_transactions[account['id']], transactions_path(login_id: params[:login_id], account_id: account['id']) do %>
+          0
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Back', connections_path, class: 'btn btn-light mt-2 float-right' %>
